@@ -1,0 +1,8 @@
+.header-spa{background:rgba(255,255,255,.96);border-bottom:1px solid #e4eaf2;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.header-inner{max-width:1240px;padding:0 24px;height:92px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.marca{display:flex;align-items:center;gap:13px;text-decoration:none;white-space:nowrap}
+.marca-icono{width:54px;height:54px;border-radius:16px;background:linear-gradient(125deg,#176ed6,#14b6b2);display:grid;place-items:center;font-weight:900;color:#fff;font-size:26px;position:relative;box-shadow:0 8px 24px #0c7aab23}
+.marca-icono span{position:absolute;right:8px;top:2px;font-size:13px}
+.marca-copy{display:flex;flex-direction:column;gap:5px}.marca-copy strong{font-size:19px;letter-spacing:-.65px;color:#132b4d}.marca-copy strong span{color:#0b9da9}.marca-copy small{color:#8795af;letter-spacing:1.1px;font-size:9px;font-weight:900}
+.navegacion{display:flex;align-items:center;gap:7px}.nav-link,.salir{color:#51708e;text-decoration:none;font-size:13px;font-weight:750;padding:15px 17px;border:0;background:transparent;border-radius:13px;white-space:nowrap}.nav-link.activo{background:#e9f5fb;color:#067d9e}.nav-link:hover,.salir:hover{background:#f1f5f9}.salir{cursor:pointer;color:#b65660}.main-body{max-width:1240px;margin:auto;padding:45px 24px 72px;min-height:calc(100vh - 150px)}.pie{text-align:center;color:#96a6bc;font-size:12px;padding:0 10px 26px}
+@media(max-width:680px){.header-inner{height:auto;padding:16px;flex-wrap:wrap;justify-content:center}.navegacion{flex-wrap:wrap;justify-content:center}.nav-link,.salir{padding:11px 13px}.main-body{padding:28px 15px 55px}}

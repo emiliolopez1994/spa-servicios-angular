@@ -1,0 +1,16 @@
+<header class="header-spa">
+  <div class="header-inner">
+    <a class="marca" routerLink="/tareas" aria-label="Ir al panel de tareas">
+      <span class="marca-icono">S<span>+</span></span>
+      <span class="marca-copy"><strong>SPA<span>Servicios</span></strong><small>GESTIÓN DE TAREAS · ANGULAR</small></span>
+    </a>
+    <nav class="navegacion" aria-label="Menú principal">
+      <a *ngIf="auth.estaAutenticado()" routerLink="/tareas" routerLinkActive="activo" class="nav-link">▤ Panel de tareas</a>
+      <a *ngIf="auth.estaAutenticado()" routerLink="/nueva-tarea" routerLinkActive="activo" class="nav-link">＋ Nueva tarea</a>
+      <button *ngIf="auth.estaAutenticado()" type="button" class="salir" (click)="salir()">Cerrar sesión</button>
+      <a *ngIf="!auth.estaAutenticado()" routerLink="/login" routerLinkActive="activo" class="nav-link">Acceder</a>
+    </nav>
+  </div>
+</header>
+<main class="main-body"><router-outlet></router-outlet></main>
+<footer class="pie">SPA Servicios REST · Angular 20 · HttpClient · RxJS · Router</footer>

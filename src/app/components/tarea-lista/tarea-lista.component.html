@@ -1,0 +1,53 @@
+<section class="hero">
+  <div>
+    <div class="etiqueta">PANEL DE CONTROL <span class="punto">●</span> PROYECTOS Y TAREAS</div>
+    <h1>Gestión de Tareas Empresariales</h1>
+    <p>Organiza tus actividades y consulta registros mediante servicios REST y RxJS.</p>
+  </div>
+  <a routerLink="/nueva-tarea" class="btn btn-primary hero-btn">＋ Crear nueva tarea</a>
+</section>
+
+<section *ngIf="resumen$ | async as resumen" class="indicadores" aria-label="Resumen de tareas">
+  <article class="indicador panel"><span>Total de tareas</span><strong>{{ resumen.total }}</strong><small>Registros en el sistema</small><i class="indicador-icono icono-azul">▤</i></article>
+  <article class="indicador panel"><span>Completadas</span><strong>{{ resumen.completas }}</strong><small>Actividades finalizadas</small><i class="indicador-icono icono-verde">✓</i></article>
+  <article class="indicador panel"><span>Pendientes</span><strong>{{ resumen.pendientes }}</strong><small>Actividades por realizar</small><i class="indicador-icono icono-ambar">◷</i></article>
+  <article class="indicador panel"><span>Prioridad alta</span><strong>{{ resumen.altas }}</strong><small>Requieren atención</small><i class="indicador-icono icono-rojo">!</i></article>
+</section>
+
+<section class="panel tabla-panel">
+  <div class="tabla-cabecera">
+    <div><h2>Listado de tareas</h2><p>Información local y registros consultados desde la API REST.</p></div>
+    <div class="herramientas">
+      <input type="search" aria-label="Buscar tareas" placeholder="⌕ Buscar tarea..." [(ngModel)]="filtro" (ngModelChange)="buscar()" />
+      <button type="button" class="btn btn-outline btn-small" (click)="actualizarDesdeApi()">↻ Consultar API</button>
+    </div>
+  </div>
+  <div *ngIf="estadoApi$ | async as estado" class="mensaje-api" [ngClass]="estado">
+    <span *ngIf="estado === 'pendiente'">● Preparando consulta HTTP.</span>
+    <span *ngIf="estado === 'cargando'">◌ Consultando https://jsonplaceholder.typicode.com/todos...</span>
+    <span *ngIf="estado === 'conectado'">✓ Consulta REST realizada. Los cambios de tareas se guardan únicamente en memoria.</span>
+    <span *ngIf="estado === 'error'">⚠ API no disponible. Puedes trabajar con las tareas locales.</span>
+  </div>
+  <p *ngIf="mensajeError" class="error-api" role="alert">{{ mensajeError }}</p>
+
+  <ng-container *ngIf="tareasFiltradas$ | async as tareas; else cargando">
+    <div class="scroll-tabla">
+      <table class="tabla-tareas">
+        <thead><tr><th>ID</th><th>TAREA</th><th>PRIORIDAD</th><th>ESTADO</th><th>ORIGEN</th><th>ACCIONES</th></tr></thead>
+        <tbody>
+          <tr *ngFor="let t of tareas; trackBy: identificar">
+            <td class="id">#{{ t.id }}</td>
+            <td class="nombre"><span class="mini-icono">▣</span><div><strong>{{ t.titulo }}</strong><small>{{ t.descripcion }}</small></div></td>
+            <td><span class="pildora" [ngClass]="{'alta': t.prioridad === 'Alta', 'media': t.prioridad === 'Media', 'baja': t.prioridad === 'Baja'}">{{ t.prioridad }}</span></td>
+            <td><span class="estado" [class.lista]="t.completada" [class.pendiente]="!t.completada">● {{ t.completada ? 'Completada' : 'Pendiente' }}</span></td>
+            <td><span class="origen" [class.api]="t.origen === 'REST'">{{ t.origen === 'REST' ? 'API REST' : 'Local' }}</span></td>
+            <td><div class="acciones"><button type="button" class="btn btn-light btn-small" (click)="cambiarEstado(t.id)">{{ t.completada ? 'Reabrir' : 'Completar' }}</button><button type="button" class="btn btn-danger btn-small" (click)="eliminar(t.id)">Eliminar</button></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p *ngIf="tareas.length === 0" class="sin-tareas">No hay tareas que coincidan con la búsqueda.</p>
+    <div class="tabla-pie"><span>{{ tareas.length }} registros visibles</span><span>Pipe <code>async</code> · RxJS</span></div>
+  </ng-container>
+  <ng-template #cargando><p class="sin-tareas">Cargando tareas...</p></ng-template>
+</section>

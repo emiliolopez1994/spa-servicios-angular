@@ -1,0 +1,13 @@
+<section class="form-wrap">
+  <div class="etiqueta">GESTIÓN DE PROYECTOS <span class="punto">●</span> NUEVA ACTIVIDAD</div>
+  <h1>Registrar nueva tarea</h1>
+  <p class="intro">Completa los datos para incorporar una actividad al panel. El registro se mantiene en memoria durante la sesión.</p>
+  <div class="panel formulario">
+    <form #form="ngForm" (ngSubmit)="guardar()">
+      <div class="campo"><label for="titulo">Título de la tarea <b>*</b></label><input id="titulo" name="titulo" type="text" [(ngModel)]="nuevaTarea.titulo" required minlength="3" maxlength="110" placeholder="Ej.: Preparar informe del proyecto" #titulo="ngModel"/><small *ngIf="titulo.invalid && titulo.touched">Escribe un título de al menos 3 caracteres.</small></div>
+      <div class="campo"><label for="descripcion">Descripción <b>*</b></label><textarea id="descripcion" name="descripcion" [(ngModel)]="nuevaTarea.descripcion" required rows="4" placeholder="Describe brevemente la actividad" #descripcion="ngModel"></textarea><small *ngIf="descripcion.invalid && descripcion.touched">La descripción es obligatoria.</small></div>
+      <div class="fila-campos"><div class="campo"><label for="prioridad">Prioridad</label><select id="prioridad" name="prioridad" [(ngModel)]="nuevaTarea.prioridad"><option value="Alta">Alta</option><option value="Media">Media</option><option value="Baja">Baja</option></select></div><div class="campo check-campo"><label>Estado inicial</label><label class="check-label"><input type="checkbox" name="completada" [(ngModel)]="nuevaTarea.completada"/> Marcar como completada</label></div></div>
+      <div class="acciones-form"><a routerLink="/tareas" class="btn btn-outline">Cancelar</a><button class="btn btn-primary" type="submit" [disabled]="form.invalid">Guardar tarea</button></div>
+    </form>
+  </div>
+</section>

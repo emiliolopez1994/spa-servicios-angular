@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+:root{font-family:Inter,Arial,sans-serif;color:#182f4e;background:#f3f6fb;font-synthesis:none}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%}body{background:#f3f6fb}button,input,select,textarea{font-family:inherit}button{cursor:pointer}a{color:inherit}
+.btn{border:0;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 20px;border-radius:12px;font-size:13px;font-weight:800;text-decoration:none;transition:transform .17s,filter .17s}
+.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}.btn-primary{color:#fff;background:linear-gradient(115deg,#226ee3,#14a9ba);box-shadow:0 8px 22px #216fe22a}.btn-outline{border:1px solid #dbe5f0;background:white;color:#476887}.btn-light{background:#eff5fa;color:#2d648d}.btn-danger{background:#fff0f1;color:#d74554}.btn-small{padding:10px 13px;font-size:12px}
+.panel{background:#fff;border:1px solid #e1e8f2;border-radius:22px;box-shadow:0 17px 40px #29466d08}.etiqueta{font-size:11px;text-transform:uppercase;letter-spacing:2px;font-weight:900;color:#6883a4}.hero{display:flex;justify-content:space-between;align-items:center;gap:25px;margin-bottom:30px}.hero h1{font-size:clamp(27px,3.4vw,40px);line-height:1.13;letter-spacing:-1.4px;margin:13px 0 12px;color:#142b4c;font-weight:900}.hero p{margin:0;color:#7588a4;font-size:15px;line-height:1.6}.hero-btn{flex-shrink:0}
+@media(max-width:750px){.hero{align-items:flex-start;flex-direction:column}.hero-btn{flex-shrink:1}}
